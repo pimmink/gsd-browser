@@ -2467,6 +2467,10 @@ mod cli_output_tests {
         assert!(package_managed_update_error(Some("0")).is_none());
     }
 
+    #[cfg_attr(
+        not(any(target_os = "linux", target_os = "macos")),
+        ignore = "install.sh requires Linux or macOS"
+    )]
     #[test]
     fn installer_refuses_to_downgrade_the_running_version() {
         let temp_dir = tempfile::tempdir().expect("temp directory");
